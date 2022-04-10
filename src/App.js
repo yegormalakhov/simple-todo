@@ -14,21 +14,20 @@ function App() {
     { id: 3, task: "don't do anynithing" },
   ]);
 
+  let [taskId, setTaskId] = useState(3);
+
   const [userInput, setUserInput] = useState([{ task: "" }]);
 
-  const handleUserInput = (event) => {
+  const handleUserInput = (event) =>
     setUserInput({ ...userInput, task: event.target.value });
-    console.log(userInput); //first entry is not recognized
-  };
 
   const handleAddNewTask = (event) => {
     event.preventDefault();
-    // console.log("submitting the form");
+    setTaskId((taskId += 1));
     const newTask = {
-      id: tasks.length + 1,
+      id: taskId,
       task: userInput.task,
     };
-    // console.log(tasks);
     setTask([...tasks, newTask]);
     setUserInput({
       id: "",
