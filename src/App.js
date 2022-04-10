@@ -36,12 +36,38 @@ function App() {
     event.target.reset();
   };
 
+  //function to remove task from the tasks array by filtering out task with an id that match the id of targeted p tag
+  const removeBtn = (event) => {
+    const targetTask = event.target.parentElement.firstChild.id;
+    const newTasks = sortedTasks(targetTask);
+    setTask(newTasks);
+    // console.log(newTasks);
+    // console.log(tasks);
+  };
+
+  function sortedTasks(value) {
+    return tasks.filter((task) => task.id != value);
+  }
+
   return (
     <div className="App">
       <Header />
-      <div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
         {tasks.map((task) => {
-          return <Task key={task.id} id={task.id} todo={task.task} />;
+          return (
+            <Task
+              key={task.id}
+              id={task.id}
+              todo={task.task}
+              onClick={removeBtn} //to  react on remove button
+            />
+          );
         })}
       </div>
 
