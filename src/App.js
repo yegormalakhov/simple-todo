@@ -38,11 +38,9 @@ function App() {
 
   //function to remove task from the tasks array by filtering out task with an id that match the id of targeted p tag
   const removeBtn = (event) => {
-    const targetTask = event.target.parentElement.firstChild.id;
+    const targetTask = event.target.parentElement.id;
     const newTasks = sortedTasks(targetTask);
     setTask(newTasks);
-    // console.log(newTasks);
-    // console.log(tasks);
   };
 
   function sortedTasks(value) {
@@ -52,13 +50,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
+      <ul>
         {tasks.map((task) => {
           return (
             <Task
@@ -69,8 +61,7 @@ function App() {
             />
           );
         })}
-      </div>
-
+      </ul>
       <UserInput
         onInput={handleUserInput}
         onNewTask={handleAddNewTask}

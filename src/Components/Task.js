@@ -1,17 +1,9 @@
 function Task({ onClick, id, todo }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        maxWidth: "500px",
-      }}
-    >
-      <p id={id} style={{ display: "block" }}>
-        {todo}
-      </p>
+    <li id={id}>
+      {todo}
       <button onClick={onClick}> X </button>
-    </div>
+    </li>
   );
 }
 
