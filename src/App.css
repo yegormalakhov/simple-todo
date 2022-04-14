@@ -11,3 +11,6 @@ button {
   margin: auto 10px;
   text-align: right;
 }
+.completed {
+  text-decoration: line-through;
+}

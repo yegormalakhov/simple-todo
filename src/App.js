@@ -8,10 +8,10 @@ import "./App.css";
 
 function App() {
   const [tasks, setTask] = useState([
-    { id: 0, task: "do something" },
-    { id: 1, task: "do something else" },
-    { id: 2, task: "do something more" },
-    { id: 3, task: "don't do anynithing" },
+    { id: 0, task: "do something", completed: false },
+    { id: 1, task: "do something else", completed: false },
+    { id: 2, task: "do something more", completed: false },
+    { id: 3, task: "don't do anynithing", completed: false },
   ]);
 
   let [taskId, setTaskId] = useState(3);
@@ -21,17 +21,36 @@ function App() {
   const handleUserInput = (event) =>
     setUserInput({ ...userInput, task: event.target.value });
 
+  const handleComplete = (event) => {
+    const targetTask = +event.target.parentElement.id;
+    // console.log(typeof targetTask);
+    setTask(
+      tasks.map((task) => {
+        //checks if the task has the same id as click target then it change completed to oposite.
+        console.log("start maping");
+        console.log(task);
+        if (task.id === targetTask) {
+          console.log("yo");
+          return { ...task, completed: !task.completed };
+        }
+        return task;
+      })
+    );
+  };
+
   const handleAddNewTask = (event) => {
     event.preventDefault();
     setTaskId((taskId += 1));
     const newTask = {
       id: taskId,
       task: userInput.task,
+      completed: false,
     };
     setTask([...tasks, newTask]);
     setUserInput({
       id: "",
       task: "",
+      completed: false,
     });
     event.target.reset();
   };
@@ -58,6 +77,8 @@ function App() {
               id={task.id}
               todo={task.task}
               onClick={removeBtn} //to  react on remove button
+              onClickCheck={handleComplete} //to do on click check btn
+              progress={task.completed}
             />
           );
         })}
