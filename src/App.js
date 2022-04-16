@@ -1,5 +1,3 @@
-// import "./styles.css";
-// import { Button, Card, Form } from "react-bootstrap";
 import { setState, useState } from "react";
 import Header from "./Components/Header";
 import Task from "./Components/Task";
@@ -49,15 +47,9 @@ function App() {
     event.target.reset();
   };
 
-  //function to remove task from the tasks array by filtering out task with an id that match the id of targeted p tag
   const handleDelete = (targetTaskId) => {
-    // const targetTask = event.target.parentElement.id;
     const newTasks = sortedTasks(targetTaskId);
     setTask(newTasks);
-  };
-
-  const handleEdit = (targetTaskId) => {
-    setTaskBeingEdited({ ...tasks.find((task) => task.id === targetTaskId) });
   };
 
   function sortedTasks(value) {
@@ -71,14 +63,57 @@ function App() {
   // ==> filter out the task that you are editing from the tasks state
   // ==> inject into the tasks state the task you modified
   // ==> reset the taskBeingEdited state to undefined
- 
+
+  const handleEdit = (targetTaskId) => {
+    setTaskBeingEdited({ ...tasks.find((task) => task.id === targetTaskId) });
+  };
+
+  const handleUpdateInput = (event) => {
+    setUserInput({ ...userInput, task: event.target.value });
+    // console.log(userInput);
+  };
+
+  const handleSaveEdit = (event) => {
+    event.preventDefault();
+    // const toUpdate = tasks.filter((task) => task.id === taskBeingEdited.id);
+    const updatedTask = {
+      id: taskBeingEdited.id,
+      task: userInput.task,
+      completed: false,
+    };
+
+    setTask(
+      tasks.map((task) => {
+        if (task.id === taskBeingEdited.id) {
+          return updatedTask;
+        } else {
+          return task;
+        }
+      })
+    );
+    // console.log(updatedTask);
+    setTaskBeingEdited();
+    setUserInput({
+      id: "",
+      task: "",
+      completed: false,
+    });
+  };
+
   return (
     <div className="App">
       <Header />
       {taskBeingEdited ? (
         <>
           <h2>Task edition mode</h2>
-          <input type="text" placeholder={taskBeingEdited.task}></input>
+          <form onSubmit={handleSaveEdit}>
+            <input
+              type="text"
+              placeholder={taskBeingEdited.task}
+              onChange={handleUpdateInput}
+            ></input>
+            <button className="updateBtn">Save changes</button>
+          </form>
         </>
       ) : (
         <>
