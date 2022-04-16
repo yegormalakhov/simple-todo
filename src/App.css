@@ -53,7 +53,7 @@ form {
 }
 
 input {
-  width: 15rem;
+  width: 18rem;
 }
 
 button {
@@ -76,6 +76,12 @@ button:hover {
 .checkBtn,
 .editBtn {
   margin-right: 0;
+}
+
+.updateBtn,
+.addBtn {
+  background-color: lightblue;
+  padding: 2px 20px;
 }
 
 i {

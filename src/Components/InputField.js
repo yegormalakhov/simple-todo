@@ -9,7 +9,7 @@ const UserInput = ({ onInput, onNewTask, userInput }) => {
         name="task"
         onChange={onInput}
       />
-      <button>Add</button>
+      <button className="addBtn">Add</button>
     </form>
   );
 };

@@ -1,5 +1,3 @@
-// import "./styles.css";
-// import { Button, Card, Form } from "react-bootstrap";
 import { setState, useState } from "react";
 import Header from "./Components/Header";
 import Task from "./Components/Task";
@@ -49,7 +47,6 @@ function App() {
     event.target.reset();
   };
 
-  //function to remove task from the tasks array by filtering out task with an id that match the id of targeted p tag
   const handleDelete = (targetTaskId) => {
     const newTasks = sortedTasks(targetTaskId);
     setTask(newTasks);
@@ -107,7 +104,14 @@ function App() {
       {taskBeingEdited ? (
         <>
           <h2>Task edition mode</h2>
-          <input type="text" placeholder={taskBeingEdited.task}></input>
+          <form onSubmit={handleSaveEdit}>
+            <input
+              type="text"
+              placeholder={taskBeingEdited.task}
+              onChange={handleUpdateInput}
+            ></input>
+            <button className="updateBtn">Save changes</button>
+          </form>
         </>
       ) : (
         <>
