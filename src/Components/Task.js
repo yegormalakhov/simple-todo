@@ -1,14 +1,19 @@
-function Task({ onClick, id, todo, progress, onClickCheck }) {
+function Task({ onDelete, id, todo, progress, onClickCheck, onEdit }) {
   return (
-    <li id={id} className={`todo-item ${progress ? "completed" : ""}`}>
+    <li className={`todo-item ${progress ? "completed" : ""}`}>
       {todo}
 
-      <button className="deleteBtn" onClick={onClick}>
-        <i class="fa-solid fa-trash-can" ></i>
-      </button>
-      <button className="checkBtn" onClick={onClickCheck}>
-        <i class="fa-solid fa-circle-check" ></i>
-      </button>
+      <div>
+        <button className="deleteBtn" onClick={() => onDelete(id)}>
+          <i className="fa-solid fa-trash-can"></i>
+        </button>
+        <button className="checkBtn" onClick={() => onClickCheck(id)}>
+          <i className="fa-solid fa-circle-check"></i>
+        </button>
+        <button className="editBtn" onClick={() => onEdit(id)}>
+          <i className="fa-solid fa-marker"></i>
+        </button>
+      </div>
     </li>
   );
 }
