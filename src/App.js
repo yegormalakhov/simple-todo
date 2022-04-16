@@ -51,13 +51,8 @@ function App() {
 
   //function to remove task from the tasks array by filtering out task with an id that match the id of targeted p tag
   const handleDelete = (targetTaskId) => {
-    // const targetTask = event.target.parentElement.id;
     const newTasks = sortedTasks(targetTaskId);
     setTask(newTasks);
-  };
-
-  const handleEdit = (targetTaskId) => {
-    setTaskBeingEdited({ ...tasks.find((task) => task.id === targetTaskId) });
   };
 
   function sortedTasks(value) {
@@ -71,7 +66,41 @@ function App() {
   // ==> filter out the task that you are editing from the tasks state
   // ==> inject into the tasks state the task you modified
   // ==> reset the taskBeingEdited state to undefined
- 
+
+  const handleEdit = (targetTaskId) => {
+    setTaskBeingEdited({ ...tasks.find((task) => task.id === targetTaskId) });
+  };
+
+  const handleUpdateInput = (event) => {
+    setUserInput({ ...userInput, task: event.target.value });
+  };
+
+  const handleSaveEdit = (event) => {
+    event.preventDefault();
+    // const toUpdate = tasks.filter((task) => task.id === taskBeingEdited.id);
+    const updatedTask = {
+      id: taskBeingEdited.id,
+      task: userInput.task,
+      completed: false,
+    };
+
+    setTask(
+      tasks.map((task) => {
+        if (task.id === taskBeingEdited.id) {
+          return updatedTask;
+        } else {
+          return task;
+        }
+      })
+    );
+    setTaskBeingEdited();
+    setUserInput({
+      id: "",
+      task: "",
+      completed: false,
+    });
+  };
+
   return (
     <div className="App">
       <Header />
@@ -89,8 +118,8 @@ function App() {
                   key={task.id}
                   id={task.id}
                   todo={task.task}
-                  onDelete={handleDelete} //to  react on remove button
-                  onClickCheck={handleComplete} //to do on click check btn
+                  onDelete={handleDelete}
+                  onClickCheck={handleComplete}
                   progress={task.completed}
                   onEdit={handleEdit}
                 />
