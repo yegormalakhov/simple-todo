@@ -9,14 +9,9 @@
   background-color: brown;
   margin: 100px auto;
   width: 601px;
-  /* height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
+
 }
 div {
-  /* width: 100%; */
   background: transparent;
 }
 h1 {
@@ -61,7 +56,6 @@ li {
 
 form {
   background-color: blue;
-  /* width: 100%; */
   margin: 1rem auto;
   padding: 20px;
   border-top: 1px solid #000;
