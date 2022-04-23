@@ -76,9 +76,10 @@ function App() {
     event.preventDefault();
     // const toUpdate = tasks.filter((task) => task.id === taskBeingEdited.id);
     const updatedTask = {
-      id: taskBeingEdited.id,
+      // id: taskBeingEdited.id,
+      // completed: taskBeingEdited.completed,
+      ...taskBeingEdited,
       task: userInput.task,
-      completed: false,
     };
 
     setTask(

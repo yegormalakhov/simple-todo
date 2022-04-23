@@ -1,13 +1,23 @@
 * {
   box-sizing: border-box;
+  background-color: rgb(74, 76, 56);
 }
 
 .App {
   font-family: sans-serif;
   text-align: center;
   background-color: brown;
-  margin: 0 auto;
-  width: 500px;
+  margin: 100px auto;
+  width: 601px;
+  /* height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+}
+div {
+  /* width: 100%; */
+  background: transparent;
 }
 h1 {
   background-color: aquamarine;
@@ -17,6 +27,9 @@ h1 {
   font-weight: 800;
 }
 
+h2 {
+  background-color: brown;
+}
 p {
   background-color: green;
   margin: 0 auto;
@@ -32,7 +45,8 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 450px;
+  width: 550px;
+  margin-left: 0;
 }
 
 li {
@@ -47,6 +61,7 @@ li {
 
 form {
   background-color: blue;
+  /* width: 100%; */
   margin: 1rem auto;
   padding: 20px;
   border-top: 1px solid #000;
@@ -54,6 +69,7 @@ form {
 
 input {
   width: 18rem;
+  background: white;
 }
 
 button {
@@ -61,6 +77,7 @@ button {
   padding: 1px 3px;
   background-color: blueviolet;
   border: none;
+  background: transparent;
 }
 
 button:hover {
@@ -87,4 +104,5 @@ button:hover {
 i {
   pointer-events: none;
   filter: invert(1);
+  background: transparent;
 }
