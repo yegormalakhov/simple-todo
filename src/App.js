@@ -56,14 +56,6 @@ function App() {
     return tasks.filter((task) => task.id != value);
   }
 
-  // Listen to the onChange event on the input and capture whatever the user is typing
-  // Add a button "Save changes"
-  // On this button, add an event listener onClick that will fire handleSaveEdit
-  // in handleSaveEdit:
-  // ==> filter out the task that you are editing from the tasks state
-  // ==> inject into the tasks state the task you modified
-  // ==> reset the taskBeingEdited state to undefined
-
   const handleEdit = (targetTaskId) => {
     setTaskBeingEdited({ ...tasks.find((task) => task.id === targetTaskId) });
   };
@@ -74,10 +66,7 @@ function App() {
 
   const handleSaveEdit = (event) => {
     event.preventDefault();
-    // const toUpdate = tasks.filter((task) => task.id === taskBeingEdited.id);
     const updatedTask = {
-      // id: taskBeingEdited.id,
-      // completed: taskBeingEdited.completed,
       ...taskBeingEdited,
       task: userInput.task,
     };
